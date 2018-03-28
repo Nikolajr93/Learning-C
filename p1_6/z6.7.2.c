@@ -7,7 +7,7 @@ int main() {
         double re, im;
     }Complex;
     Complex niz[10];
-    for(i=0; i<2; i++){
+    for(i=0; i<10; i++){
         scanf("%lf%lf",&niz[i].re,&niz[i].im);
         t=sqrt(niz[i].re*niz[i].re+niz[i].im*niz[i].im);
         if(t>moduo){

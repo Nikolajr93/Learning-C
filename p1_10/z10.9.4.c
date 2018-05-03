@@ -48,6 +48,13 @@ void ispisi_matricu(int* a, int n){
     }
     return;
 }
+void ispisi_kolonu(int* a, int n, int b){
+    int i,j;
+    for(i=0;i<n;i++){
+        printf("%d ", a[i*n+b]);
+    }
+    return;
+}
 int main(){
     int levak,n,s,*a,*b,*m;
     scanf("%d",&n);
@@ -58,6 +65,7 @@ int main(){
     //ucitaj_vektor(b,n);
     ucitaj_matricu(m,n);
     ispisi_matricu(m,n);
+    ispisi_kolonu(m,n,1);
     //s=skalarni_proizvod(a,b,n);
     s=ortonomirana(m,n);
     printf("%d\n",s);

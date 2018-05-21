@@ -49,13 +49,24 @@ void insertionsort(int a[],int n){
         a[j]=t;
     }
 }
+void shellsort(int a[],int n){
+    int gap,i,j;
+    for(gap=n/2;gap>0;gap/=2){
+        for(i=gap;i<n;i++){
+            for(j=i-gap;j>=0 && a[j]>a[j+gap];j-=gap){
+                razmeni(a,j,j+gap);
+            }
+        }
+    }
+}
 int main(){
     int levak,a[100],n;
     scanf("%d",&n);
     citaj_niz(a,n);
     //bubblesort(a,n);
     //selectionsort(a,n);
-    insertionsort(a,n);
+    //insertionsort(a,n);
+    shellsort(a,n);
     pisi_niz(a,n);
     scanf("%d",&levak);
 

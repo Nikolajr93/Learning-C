@@ -59,14 +59,66 @@ void shellsort(int a[],int n){
         }
     }
 }
+void merge(int a[], int m, int b[], int n, int c[]) {
+    int i=0, j=0, k=0;
+    while(i<m && j<n) {
+        if(a[i]<b[j])
+            c[k++]=a[i++];
+        else
+            c[k++]=b[j++];
+    }
+    while(i<m)
+        c[k++]=a[i++];
+    while (j<n)
+        c[k++]=b[j++];
+}
+void mergesort(int a[], int l, int d, int tmp[]){
+    if (l<d) {
+        int i,j,n,s,n1,n2;
+        n=d-l+1;
+        s=l+n/2;
+        n1=n/2;
+        n2=n-n1;
+        mergesort(a,l,s-1,tmp);
+        mergesort(a,s,d,tmp);
+        merge(a+l,n1,a+s,n2,tmp);
+        for(i=l, j=0; i<=d; i++, j++){
+            a[i]=tmp[j];
+        }
+    }
+}
+int part(int a[], int l, int d){
+    int p=l;
+    while(l<d){
+        while(a[l]<=a[p] && l<d)
+            l++;
+        while(a[d]>=a[p] && l<d)
+            d--;
+        if(l<d)
+            razmeni(a,l,d);
+    }
+    if(a[l]>=a[p])
+        l--;
+    razmeni(a,p,l);
+    return l;
+}
+void qsort(int a[], int l, int d){
+    if(l<d){
+        int p=part(a,l,d);
+        qsort(a,l,p-1);
+        qsort(a,p+1,d);
+    }
+}
 int main(){
-    int levak,a[100],n;
+    int levak, a[100], n, tmp[100];
     scanf("%d",&n);
     citaj_niz(a,n);
     //bubblesort(a,n);
     //selectionsort(a,n);
     //insertionsort(a,n);
-    shellsort(a,n);
+    //shellsort(a,n);
+    //mergesort(a,0,n-1,tmp);
+    qsort(a,0,n-1);
     pisi_niz(a,n);
     scanf("%d",&levak);
 
